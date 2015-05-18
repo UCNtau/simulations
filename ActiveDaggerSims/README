@@ -26,6 +26,13 @@ Usage:
 If no output file is specified, a file called 'default.root' will be created
 in the same directory as the executable. This includes in interactive mode.
 
+Output:
+This program will output a root file containing a root tree named
+'PMTHitsTree', which contains the particle birth position, momentum, and
+energy as well as the final energy. I have not yet set it to output the final
+position or final volume, but I have plans to do so soon.
+
+
 Other included macros:
 TurnOffPhotonTrajectories.mac -- Turns off the green tracks of photons in the
 	visualization. The boundary points are still drawn as yellow dots,
