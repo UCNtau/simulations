@@ -1,0 +1,25 @@
+General Vanadium Detector Readme
+
+Date: Last code written on 6/3/2013
+
+Introduction:
+This file contains the location of the various parts of the simulation.
+
+Included code:
+	-Geant4 simulation:
+		-VDetector.cc in the main directory
+		-/src has .cc code (actual logic)
+		-/include has .hh code (headers that define classes)
+		-/build_dir has a README with information for compilation
+	-Data analysis:
+		-In build_dir/Datafiles/Data
+
+Each of the included programs have their own README file and the code should
+be all commented for better understanding.
+
+I have been keeping macros to control the experiments in a seperate directory
+from the output of the experiments. The logical setup of the directories is by
+no means set in stone, it can be adjusted if need be. If a large simulation is
+run, a lot of space could be taken up. A run of 1000 events where ~600 were
+kept was 20 mb. The majority of the size is the list of photon hits and times
+in the root file, which are not stored as floats to keep down on filesize.

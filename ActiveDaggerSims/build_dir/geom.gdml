@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE gdml []>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./gdml_schema/gdml.xsd">
+
+<define>
+	<!-- Definition of constants -->
+</define>
+
+<materials>
+	<!-- Definition of materials (isotopes, elements, metals/gas/etc) -->
+	<element name="Carbon" formula="C" Z="6.0">
+		<atom value="12.0"/>
+	</element>
+	<element name="Hydrogen" formula="H" Z="1.0">
+		<atom value="1.0" />
+	</element>
+	<element name="Oxygen" formula="O" Z="8.0">
+		<atom value="16.0"/>
+	</element>
+	<element name="Nitrogen" formula="N" Z="7.0">
+		<atom value="14.01"/>
+	</element>
+	<material name="Air" >
+		<D value="0.0" />
+		<fraction n="0.8" ref="Nitrogen" />
+		<fraction n="0.2" ref="Oxygen" />
+		<!--property name="RINDEX" ref="AirRefrac" /-->
+	</material>
+	<material name="EljenWLS">
+		<D value="1.023"/>
+		<fraction n=".526" ref="Hydrogen"/>
+		<fraction n=".474" ref="Carbon"/>
+	</material>
+	<material name="SipmEpoxy">
+		<D value="1.0"/>
+		<fraction n=".5" ref="Hydrogen"/>
+		<fraction n=".5" ref="Carbon"/>
+	</material>
+</materials>
+
+
+<solids>
+	<!-- Definition of solids (Shapes that will be made into structures later -->
+	<box name="WLSSlab" x="505" y="305" z="5" lunit="mm"/>
+	<box name="sipmBox" x=".5" y="7" z="7" lunit="mm"/>
+	<box name="WorldBox" x="1000.0" y="1000.0" z="1000.0" lunit="mm"/>
+</solids>
+
+
+<structure>
+	<!-- Definition of structures (Shapes made out of Materials) -->
+	<volume name="WLS">
+		<materialref ref="EljenWLS"/>
+		<solidref ref="WLSSlab"/>
+	</volume>
+	<volume name="sipm">
+		<materialref ref="SipmEpoxy"/>
+		<solidref ref="sipmBox"/>
+	</volume>
+	<volume name="World">
+		<materialref ref="Air"/><solidref ref="WorldBox"/>
+		<physvol>
+			<volumeref ref="WLS"/>
+			<position x="0.0" y="0.0" z="0.0" name="posWLS"/>
+		</physvol>
+		<physvol>
+			<volumeref ref="sipm"/>
+			<position x="252.75" y="0" z="0" name="sipmPos"/>
+		</physvol>
+	</volume>
+</structure>
+
+
+
+<!-- Definition of what will be in the world. You could have multiple versions of the detector here if you wish -->
+<setup name="Setup" version="1.0">
+	<world ref="World"/>
+</setup>
+</gdml>

@@ -1,0 +1,12 @@
+#This is a macro file for a General Particle Source.
+#There is some documentation online for the GPS in Geant4.
+#One could also start the simulation in interactive (GUI) mode
+#and look at the help for the GPS settings in /gps
+
+/gps/particle opticalphoton		#Set particle type
+/gps/pos/type Point		#Set position generation type
+/gps/pos/centre 0 0 5.0 mm	#Set center of position distribution
+/gps/ang/type iso		#Set angular distribution type
+/gps/ene/mono 2.755 eV		#Set energy distribution type
+
+/run/beamOn 1000000			#run 20 events.
